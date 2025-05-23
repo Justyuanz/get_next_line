@@ -11,7 +11,7 @@ int	main(void)
 	int	fd;
 	char *content;
 
-	fd = open("empty.txt", O_RDONLY);
+	fd = open("normal.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		// Print the numeric error code set by the last failed system call
@@ -21,11 +21,8 @@ int	main(void)
 	}
 	else
 	{
-		while (content)
-		{
 			content = get_next_line(fd);
 			printf("%s\n", content);
-		}
 	}
 	close(fd);
 }
