@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:24 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/25 11:09:59 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/25 15:52:38 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,14 @@ int	gnl_find_nl(char	*buf)
 	return (0);
 }
 
-char	*gnl_strjoin(char *longjoinstr, char	*buf)
+char	*gnl_strjoin(char *src, char *buf)
 {
-	int		i;
+	char	*ptr;
 
-	i = 0;
-	while (buf[i])
-		i++;
-	joinstr = malloc((i + 1) * sizeof(char));
-	if (joinstr == NULL)
+	ptr = malloc ((sizeof(src) + BUFFER_SIZE + 1) * sizeof (char));
+	if (!ptr)
 		return (NULL);
-	i = 0;
-	while (buf[i])
-	{
-		joinstr[i] = buf[i];
-		i++;
-	}
-	joinstr[i] = '\0';
-	return (joinstr);
+	
 }
 
 char	*gnl_substr(char *src, int i, int nl)
