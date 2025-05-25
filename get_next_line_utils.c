@@ -6,24 +6,27 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:24 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/23 16:19:41 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/25 11:09:59 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "get_next_line.h"
 
-char	*gnl_find_nl(char	*buf)
+int	gnl_find_nl(char	*buf)
 {
-	while (*buf)
+	int	i;
+
+	i = 0;
+	while (buf[i])
 	{
-		if (*buf == '\n')
-			return (buf);
-		buf++;
+		if (buf[i] == '\n')
+			return (i);
+		i++;
 	}
-	return (NULL);
+	return (0);
 }
 
-char	*gnl_strjoin(char *joinstr, char	*buf)
+char	*gnl_strjoin(char *longjoinstr, char	*buf)
 {
 	int		i;
 
@@ -31,6 +34,8 @@ char	*gnl_strjoin(char *joinstr, char	*buf)
 	while (buf[i])
 		i++;
 	joinstr = malloc((i + 1) * sizeof(char));
+	if (joinstr == NULL)
+		return (NULL);
 	i = 0;
 	while (buf[i])
 	{
@@ -41,7 +46,18 @@ char	*gnl_strjoin(char *joinstr, char	*buf)
 	return (joinstr);
 }
 
-char	*gnl_substr(char *src, int start, char delimeter)
+char	*gnl_substr(char *src, int i, int nl)
 {
-	
+	char	*theline;
+
+	theline = malloc((nl + 1) * sizeof (char));
+	if (theline == NULL)
+		return (NULL);
+	while (i < nl + 1)
+	{
+		theline[i] = src[i];
+		i++;
+	}
+	theline[i] = '\0';
+	return (theline);
 }

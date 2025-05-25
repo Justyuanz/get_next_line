@@ -6,13 +6,14 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:34 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/23 15:39:01 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/25 10:31:11 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# include <stdio.h> //DELETE ME
 # include <unistd.h>
 # include <stdlib.h>
 
@@ -24,7 +25,8 @@
 #define TRUE 1
 
 char	*get_next_line(int fd);
-char	*gnl_find_nl(char	*buf);
+int	gnl_find_nl(char	*buf);
 char	*gnl_strjoin(char *joinstr, char	*buf);
+char	*gnl_substr(char *src, int i, int nl);
 
 #endif
