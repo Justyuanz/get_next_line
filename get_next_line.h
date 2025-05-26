@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:34 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/25 14:17:46 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/26 12:17:55 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 #define TRUE 1
 
 char	*get_next_line(int fd);
-int	gnl_find_nl(char	*buf);
-char	*gnl_strcat(char *src, char *buf);
+char	*gnl_find_nl(char	*buf);
+char	*gnl_strjoin(char *joinline, char *buf);
 char	*gnl_substr(char *src, int i, int nl);
 
 #endif
