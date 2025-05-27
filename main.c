@@ -6,23 +6,29 @@
 
 extern int errno;
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	int	fd;
 	char *content;
+	int i = 1;
 
-	fd = open("normal.txt", O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
 		// Print the numeric error code set by the last failed system call
 		printf("Error number: %d\n", errno);
 		// Print the human-readable error message for the current errno value
 		printf("Error message: %s\n", strerror(errno));
+		return (-1);
 	}
 	else
 	{
+		while (i<4)
+		{
 			content = get_next_line(fd);
-			printf("%s\n", content);
+			printf("%d: %s", i++, content);
+			free (content);
+		}
 	}
 	close(fd);
 }
