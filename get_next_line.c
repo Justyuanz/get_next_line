@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:29 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/28 17:22:00 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/28 17:40:38 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 	while (1)
  	{
-		if (nl == -1)
+		if (nl == -1 && bytes_read == -1)
 		{
 			bytes_read = read(fd, buf, BUFFER_SIZE);
 			if (bytes_read < 0)
