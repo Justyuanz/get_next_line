@@ -12,7 +12,9 @@ int	main(int argc, char *argv[])
 	char *content;
 	int i = 1;
 
-	fd = open(argv[1], O_RDONLY);
+	(void)argc;
+	(void)argv;
+	fd = open("normal.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		// Print the numeric error code set by the last failed system call
@@ -23,10 +25,11 @@ int	main(int argc, char *argv[])
 	}
 	else
 	{
-		while (i<4)
+		while (content != NULL)
 		{
 			content = get_next_line(fd);
 			printf("%d: %s", i++, content);
+			fflush(stdout);
 			free (content);
 		}
 	}

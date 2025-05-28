@@ -6,12 +6,21 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:24 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/27 21:44:44 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/28 17:17:21 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "get_next_line.h"
 
+int gnl_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while(str[i])
+		i++;
+	return (i);
+}
 void gnl_free(char **ptr)
 {
 	if (*ptr)
@@ -47,11 +56,11 @@ char	*gnl_strjoin(char *pre_line, char *buf, int nl)
 		i++;
 	if (nl == -1)
 	{
-		nl = ft_strlen(buf);
+		nl = BUFFER_SIZE; //should be strlen
 	}
 	else
 	{
-		nl = nl + 1;
+		nl += 1;
 	}
 	str = malloc((i + nl + 1) * sizeof(char));
 	if (!str)
