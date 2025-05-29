@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:29 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/30 00:56:00 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:12:17 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 	gnl_updatebuf(buf);
 	while (1)
  	{
-		if (gnl.nl == -1)
+		if (gnl.nl == FALSE)
 		{
 			gnl.bytes_read = read(fd, buf, BUFFER_SIZE);
 			if (gnl.bytes_read <= 0)
@@ -33,7 +33,7 @@
 		}
  		gnl.nl = gnl_find_nl(buf, '\n');
 		gnl.line = gnl_strjoin(gnl.line, buf, gnl.nl);
-		if (gnl.nl != -1)
+		if (gnl.nl != FALSE)
 			break;
  	}
  	return (gnl.line);

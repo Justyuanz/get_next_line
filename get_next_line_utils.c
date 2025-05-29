@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:24 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/30 00:56:40 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:24:40 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int gnl_find_nl(char	*buf, char c)
 			return (i);
 		i++;
 	}
-	return (-1);
+	return (FALSE);
 }
 
 char *gnl_error_eof(t_gnl *gnl, char *buf)
@@ -55,11 +55,11 @@ int gnl_updatebuf(char *buf)
 
 	i = 0;
 	gnl.nl = gnl_find_nl(buf, '\n');
-	if (gnl.nl != -1 && (buf[gnl.nl +1] || buf[gnl.nl]))
+	if (gnl.nl != FALSE && (buf[gnl.nl +1] || buf[gnl.nl]))
 	{
 		while (buf[i])
 		{
-			if (gnl.nl + i + 1 <= gnl_strlen(buf))
+			if ((gnl.nl + i + 1) <= gnl_strlen(buf))
 				buf[i] = buf[gnl.nl + i + 1];
 			i++;
 		}
@@ -75,16 +75,16 @@ char	*gnl_strjoin(char *pre_line, char *buf, int nl)
 	char	*str;
 
 	i = 0;
-	j = -1;
 	while (pre_line[i])
 		i++;
-	if (nl == -1)
+	if (nl == FALSE)
 		nl = gnl_strlen(buf);
 	else
 		nl += 1;
 	str = malloc((i + nl + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
+	j = 0;
 	while (j++ < i)
 		str[j] = pre_line[j];
 	j = 0;
