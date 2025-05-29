@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:24 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/30 00:35:22 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/30 00:56:40 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,38 @@ int gnl_find_nl(char	*buf, char c)
 	return (-1);
 }
 
+char *gnl_error_eof(t_gnl *gnl, char *buf)
+{
+	if (*buf)
+	{
+		buf[0] = '\0';
+		return (gnl->line);
+	}
+ 	free(gnl->line);
+	gnl->line = NULL;
+	return (NULL);
+}
+
+int gnl_updatebuf(char *buf)
+{
+	int	i;
+	t_gnl	gnl;
+
+	i = 0;
+	gnl.nl = gnl_find_nl(buf, '\n');
+	if (gnl.nl != -1 && (buf[gnl.nl +1] || buf[gnl.nl]))
+	{
+		while (buf[i])
+		{
+			if (gnl.nl + i + 1 <= gnl_strlen(buf))
+				buf[i] = buf[gnl.nl + i + 1];
+			i++;
+		}
+		buf[i] = '\0';
+	}
+	return (gnl.nl);
+}
+
 char	*gnl_strjoin(char *pre_line, char *buf, int nl)
 {
 	int	i;
@@ -62,36 +94,4 @@ char	*gnl_strjoin(char *pre_line, char *buf, int nl)
 	free(pre_line);
 	pre_line = NULL;
 	return (str);
-}
-
-int gnl_updatebuf(char *buf)
-{
-	int	i;
-	t_gnl	gnl;
-
-	i = 0;
-	gnl.nl = gnl_find_nl(buf, '\n');
-	if (gnl.nl != -1 && (buf[gnl.nl +1] || buf[gnl.nl]))
-	{
-		while (buf[i])
-		{
-			if (gnl.nl + i + 1 <= gnl_strlen(buf))
-				buf[i] = buf[gnl.nl + i + 1];
-			i++;
-		}
-		buf[i] = '\0';
-	}
-	return (gnl.nl);
-}
-
-char *gnl_error_eof(t_gnl *gnl, char *buf)
-{
-	if (*buf)
-	{
-		buf[0] = '\0';
-		return (gnl->line);
-	}
- 	free(gnl->line);
-	gnl->line = NULL;
-	return (NULL);
 }
