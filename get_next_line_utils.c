@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:24 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/29 23:56:04 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/30 00:32:12 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@ int gnl_strlen(char *str)
 	while(str[i])
 		i++;
 	return (i);
-}
-void gnl_free(char **ptr)
-{
-	if (*ptr)
-	{
-		free(*ptr);
-		*ptr = NULL;
-	}
 }
 
 int gnl_find_nl(char	*buf, char c)
@@ -51,7 +43,7 @@ char	*gnl_strjoin(char *pre_line, char *buf, int nl)
 	char	*str;
 
 	i = 0;
-	j = 0;
+	j = -1;
 	while (pre_line[i])
 		i++;
 	if (nl == -1)
@@ -61,16 +53,15 @@ char	*gnl_strjoin(char *pre_line, char *buf, int nl)
 	str = malloc((i + nl + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
-	i = 0;
-	while (pre_line[i])
-	{
-		str[i] = pre_line[i];
-		i++;
-	}
+	while (j++ < i)
+		str[j] = pre_line[j];
+	j = 0;
 	while (j < nl)
 		str[i++] = buf[j++];
 	str[i] = '\0';
-	return (gnl_free(&pre_line), str);
+	free(pre_line);
+	pre_line = NULL;
+	return (str);
 }
 
 int gnl_updatebuf(char *buf)
