@@ -4,12 +4,10 @@
 #include <fcntl.h>
 #include "get_next_line.h"
 
-extern int errno;
-
 int	main(int argc, char *argv[])
 {
 	int	fd;
-	char *content;
+	char *content = 1;
 	int i = 1;
 
 	(void)argc;

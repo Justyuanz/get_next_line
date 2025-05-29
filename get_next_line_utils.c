@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:24 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/28 17:17:21 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:27:48 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,9 @@ char	*gnl_strjoin(char *pre_line, char *buf, int nl)
 	while (pre_line[i])
 		i++;
 	if (nl == -1)
-	{
-		nl = BUFFER_SIZE; //should be strlen
-	}
+		nl = gnl_strlen(buf);
 	else
-	{
 		nl += 1;
-	}
 	str = malloc((i + nl + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
@@ -72,10 +68,25 @@ char	*gnl_strjoin(char *pre_line, char *buf, int nl)
 		i++;
 	}
 	while (j < nl)
-	{
 		str[i++] = buf[j++];
-	}
 	str[i] = '\0';
-	gnl_free(&pre_line);
-	return (str);
+	return (gnl_free(&pre_line), str);
+}
+
+int gnl_updatebuf(char *buf)
+{
+	int	i;
+	t_gnl	gnl;
+
+	i = 0;
+	gnl.nl = gnl_find_nl(buf, '\n');
+	if (gnl.nl != -1 && (buf[gnl.nl +1] || buf[gnl.nl]))
+	{
+		while (buf[i])
+		{
+			buf[i] = buf[gnl.nl + i + 1];
+			i++;
+		}
+	}
+	return (gnl.nl);
 }

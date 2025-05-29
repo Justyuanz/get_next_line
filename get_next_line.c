@@ -6,70 +6,42 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:29 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/28 17:40:38 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:40:24 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
- //ssize_t read(int fd, void *buf, size_t count)
  char	*get_next_line(int fd)
  {
- 	int	nl;
- 	int i;
- 	char	*line;
- 	ssize_t	bytes_read;
- 	static char	buf[BUFFER_SIZE + 1];
+	t_gnl	gnl;
+	static char	buf[BUFFER_SIZE + 1];
 
- 	i = 0;
- 	if (fd < 0 || BUFFER_SIZE <= 0)
+	gnl.line = malloc(1);
+ 	if (fd < 0 || BUFFER_SIZE <= 0 ||!gnl.line)
  		return (NULL);
- 	line = malloc(1);
-		if(!line)
-			return (NULL);
- 	line[0] = '\0';
-	bytes_read = -1;
-	nl = gnl_find_nl(buf, '\n');
-	gnl_updatebuf(buf, nl);
-
+ 	gnl.line[0] = '\0';
+	gnl_updatebuf(buf);
 	while (1)
  	{
-		if (nl == -1 && bytes_read == -1)
+		if (gnl.nl == -1)
 		{
-			bytes_read = read(fd, buf, BUFFER_SIZE);
-			if (bytes_read < 0)
- 				return (NULL);
-		}
-		buf[bytes_read] = '\0';
- 		nl = gnl_find_nl(buf, '\n');
-		line = gnl_strjoin(line, buf, nl);
-		if (nl != -1)
-			break;
-		if (bytes_read == 0)
-		{
-			if (*buf)
+			gnl.bytes_read = read(fd, buf, BUFFER_SIZE);
+			if (gnl.bytes_read <= 0)
 			{
-				line = buf;
-				return (line);
+				if (*buf)
+				{
+					buf[0] = '\0';
+					return (gnl.line);
+				}
+ 				return (gnl_free(&gnl.line), NULL);
 			}
-			return (NULL);
+			buf[gnl.bytes_read] = '\0';
 		}
+ 		gnl.nl = gnl_find_nl(buf, '\n');
+		gnl.line = gnl_strjoin(gnl.line, buf, gnl.nl);
+		if (gnl.nl != -1)
+			break;
  	}
-
- 	return (line);
-}
-
-void gnl_updatebuf(char *buf,int nl)
-{
-	int	i;
-
-	i = 0;
-	if (nl != -1 && (buf[nl +1] || buf[nl]))
-	{
-		while (buf[i])
-		{
-			buf[i] = buf[nl + i + 1];
-			i++;
-		}
-	}
+ 	return (gnl.line);
 }
