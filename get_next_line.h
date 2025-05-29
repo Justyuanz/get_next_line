@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:34 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/29 16:29:40 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/29 23:57:13 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#define BUFFER_SIZE 50
+#define BUFFER_SIZE 1
 #endif
 
 typedef struct s_gnl
@@ -35,5 +35,6 @@ char	*gnl_strjoin(char *pre_line, char *buf, int nl);
 char	*gnl_substr(char *src, int i, int nl);
 int gnl_updatebuf(char *buf);
 int gnl_strlen(char *str);
+char *gnl_error_eof(t_gnl *gnl, char *buf);
 
 #endif
