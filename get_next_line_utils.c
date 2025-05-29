@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:24 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/30 00:32:12 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/30 00:35:22 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,16 @@ int gnl_updatebuf(char *buf)
 		buf[i] = '\0';
 	}
 	return (gnl.nl);
+}
+
+char *gnl_error_eof(t_gnl *gnl, char *buf)
+{
+	if (*buf)
+	{
+		buf[0] = '\0';
+		return (gnl->line);
+	}
+ 	free(gnl->line);
+	gnl->line = NULL;
+	return (NULL);
 }
