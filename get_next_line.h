@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:34 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/30 11:51:21 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/30 13:43:36 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # ifndef BUFFER_SIZE
 #define BUFFER_SIZE 10000
 #endif
-
-#define FALSE -1
 
 typedef struct s_gnl
 {

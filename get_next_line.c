@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:29 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/30 12:05:56 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/30 13:46:04 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@
 	t_gnl	gnl;
 	static char	buf[BUFFER_SIZE + 1];
 
-	gnl.line = malloc(1);
- 	if (fd < 0 || BUFFER_SIZE <= 0 ||!gnl.line)
+ 	if (fd < 0 || BUFFER_SIZE <= 0)
  		return (NULL);
+	gnl.line = malloc(1);
+	if (!gnl.line)
+		return (NULL);
  	gnl.line[0] = '\0';
 	gnl_updatebuf(buf);
 	while (1)
  	{
-		if (gnl.nl == FALSE)
+		if (gnl.nl == -1)
 		{
 			gnl.bytes_read = read(fd, buf, BUFFER_SIZE);
 			if (gnl.bytes_read <= 0)
@@ -37,7 +39,7 @@
 		}
  		gnl.nl = gnl_find_nl(buf, '\n');
 		gnl.line = gnl_strjoin(gnl.line, buf, gnl.nl);
-		if (gnl.nl != FALSE)
+		if (gnl.nl != -1)
 			break;
  	}
  	return (gnl.line);
