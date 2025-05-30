@@ -6,11 +6,15 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:29 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/30 01:12:17 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/30 12:05:56 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#if !defined(BUFFER_SIZE) || BUFFER_SIZE <= -2
+#undef BUFFER_SIZE
+#define BUFFER_SIZE 0
+#endif
 
  char	*get_next_line(int fd)
  {
