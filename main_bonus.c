@@ -2,7 +2,7 @@
 #include <fcntl.h>
 #include "get_next_line_bonus.h"
 
-int fd_alldone(char *content, int argc);
+int fd_alldone(int *flag, int argc);
 int	should_print_or_not(int flag);
 
 int	main(int argc, char *argv[])
@@ -23,7 +23,7 @@ int	main(int argc, char *argv[])
 			i++;
 		}
 		i = 0;
-		while (fd_alldone(content, argc) != 1)
+		while (fd_alldone(flag, argc) != 1)
 		{
 			i = 0;
 			while (i < argc - 1)
@@ -46,13 +46,13 @@ int	main(int argc, char *argv[])
 
 	}
 }
- int fd_alldone(char *content, int argc)
+ int fd_alldone(int *flag, int argc)
  {
-	int i = 0;
+	int	i = 0;
 
 	while (i < argc - 1)
 	{
-		if (content != NULL)
+		if (flag[i] == 0) //not done yet
 			return (0);
 		i++;
 	}

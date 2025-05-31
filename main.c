@@ -1,17 +1,23 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include "get_next_line.h"
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	int	fd;
 	int	i = 1;
 	char *content = "ab";
-	
-	fd = open("testfiles/normal.txt", O_RDONLY);
-	if (fd == -1)
+	if (argc == 2)
 	{
-		fprintf(stderr, "open error");
-		return (-1);
+		fd = open(argv[1], O_RDONLY);
+		if (fd == -1)
+		{
+			fprintf(stderr, "open error");
+			return (-1);
+		}
+	}
+	else
+	{
+		fd = 0;
 	}
 	while (content != NULL)
 	{
@@ -19,5 +25,6 @@ int	main(void)
 		printf(" fd%d ----%d call: %s", fd, i++, content);
 		free(content);
 	}
-	close(fd);
+	if (argc == 2)
+		close(fd);
 }
