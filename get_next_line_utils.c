@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:24 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/31 16:16:32 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/31 22:39:28 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*gnl_strjoin(char *pre_line, char *buf, int nl)
 		free(pre_line);
 		return (NULL);
 	}
-	j = 0;
+	j = -1;
 	while (++j < i)
 		str[j] = pre_line[j];
 	j = 0;
