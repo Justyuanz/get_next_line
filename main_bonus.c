@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <fcntl.h>
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int fd_alldone(char *content, int argc);
 int	should_print_or_not(int flag);
@@ -8,8 +8,8 @@ int	should_print_or_not(int flag);
 int	main(int argc, char *argv[])
 {
 	char *content = "ab";
-	int	fd[1024] = {0};
-	int	flag[1024] = {0};
+	int	fd[MAX_FD] = {0};
+	int	flag[MAX_FD] = {0};
 	int	b = 0;
 	int i = 0;
 

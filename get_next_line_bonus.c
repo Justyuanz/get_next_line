@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:29 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/31 16:17:34 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/31 23:40:24 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  char	*get_next_line(int fd)
  {
 	t_gnl	gnl;
-	static char	buf[1024][BUFFER_SIZE + 1];
+	static char	buf[MAX_FD][BUFFER_SIZE + 1];
 
  	if (fd < 0 || BUFFER_SIZE <= 0)
  		return (NULL);
