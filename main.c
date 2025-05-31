@@ -1,36 +1,55 @@
 #include <stdio.h>
-#include <errno.h>
-#include <string.h>
 #include <fcntl.h>
 #include "get_next_line.h"
+ int fd_done(char *content, int argc);
 
 int	main(int argc, char *argv[])
 {
-	int	fd;
+	int	fd[1024] = {0};
 	char *content = "ab";
-	int i = 1;
+	int	b = 0;
+	int i = 0;
+	int	j = 1;
 
 	if (argc >= 2)
 	{
-		fd = open(argv[1], O_RDONLY);
-		if (fd == -1)
+		while (j < argc)
 		{
-			// Print the numeric error code set by the last failed system call
-			printf("Error number: %d\n", errno);
-			// Print the human-readable error message for the current errno value
-			printf("Error message: %s\n", strerror(errno));
-			return (-1);
+			fd[i] = open(argv[j], O_RDONLY);
+			if (fd[i] == -1)
+				return (-1);
+			i++;
+			j++;
 		}
-		else
+		i = 0;
+		while (fd_done(content, argc) != 1)
 		{
-			while (content != NULL)
+			i = 0;
+			while (i < argc - 1)
 			{
-				content = get_next_line(fd);
-				printf("%d: %s", i++, content);
+				content = get_next_line (fd[i]);
+				printf("fd%d:--%s",fd[i], content);
 				fflush(stdout);
-				free (content);
+				if (!content)
+					printf("\n");
+				free(content);
+				i++;
 			}
 		}
-		close(fd);
+		while (i--)
+			close (fd[i]);
+
 	}
 }
+ int fd_done(char *content, int argc)
+ {
+	int i = 0;
+
+	while (i < argc - 1)
+	{
+		if (content != NULL)
+			return (0);
+		i++;
+	}
+	return (1);
+ }

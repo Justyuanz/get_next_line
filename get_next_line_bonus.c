@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:29 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/31 09:28:50 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/31 09:33:41 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  char	*get_next_line(int fd)
  {
 	t_gnl	gnl;
-	static char	buf[BUFFER_SIZE + 1];
+	static char	buf[1024][BUFFER_SIZE + 1];
 
  	if (fd < 0 || BUFFER_SIZE <= 0)
  		return (NULL);
@@ -27,18 +27,18 @@
 	if (!gnl.line)
 		return (NULL);
  	gnl.line[0] = '\0';
-	gnl.nl = gnl_updatebuf(buf);
+	gnl.nl = gnl_updatebuf(buf[fd]);
 	while (1)
  	{
 		if (gnl.nl == -1)
 		{
-			gnl.bytes_read = read(fd, buf, BUFFER_SIZE);
+			gnl.bytes_read = read(fd, buf[fd], BUFFER_SIZE);
 			if (gnl.bytes_read <= 0)
-				return(gnl_error_eof(&gnl, buf));
-			buf[gnl.bytes_read] = '\0';
+				return(gnl_error_eof(&gnl, buf[fd]));
+			buf[fd][gnl.bytes_read] = '\0';
 		}
- 		gnl.nl = gnl_find_nl(buf, '\n');
-		gnl.line = gnl_strjoin(gnl.line, buf, gnl.nl);
+ 		gnl.nl = gnl_find_nl(buf[fd], '\n');
+		gnl.line = gnl_strjoin(gnl.line, buf[fd], gnl.nl);
 		if (gnl.nl != -1)
 			break;
  	}
