@@ -6,11 +6,12 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:29 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/31 09:33:41 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/31 16:17:34 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+
 #if !defined(BUFFER_SIZE) || BUFFER_SIZE <= -2
 #undef BUFFER_SIZE
 #define BUFFER_SIZE 0

@@ -6,11 +6,12 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:29 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/31 09:28:50 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/31 16:17:36 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
 #if !defined(BUFFER_SIZE) || BUFFER_SIZE <= -2
 #undef BUFFER_SIZE
 #define BUFFER_SIZE 0
@@ -44,4 +45,3 @@
  	}
  	return (gnl.line);
 }
-

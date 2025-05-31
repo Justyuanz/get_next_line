@@ -1,5 +1,4 @@
 1This is line one11
 1This is line two22
 1This is line three33.
-1..
 1...

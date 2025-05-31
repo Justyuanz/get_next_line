@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:24 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/30 13:56:57 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/05/31 15:51:01 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "get_next_line.h"
+# include "get_next_line_bonus.h"
 
 int gnl_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while(str[i])
 		i++;
 	return (i);
@@ -81,13 +83,13 @@ char	*gnl_strjoin(char *pre_line, char *buf, int nl)
 		nl += 1;
 	str = malloc((i + nl + 1) * sizeof(char));
 	if (!str)
-		return (NULL);
-	j = 0;
-	while (j < i)
 	{
-		str[j] = pre_line[j];
-		j++;
+		free(pre_line);
+		return (NULL);
 	}
+	j = -1;
+	while (++j < i)
+		str[j] = pre_line[j];
 	j = 0;
 	while (j < nl)
 		str[i++] = buf[j++];
