@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:24 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/06/01 12:04:30 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/06/01 21:03:18 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	gnl_strlen(char *str)
 	int	i;
 
 	i = 0;
-	if (!str)
-		return (0);
 	while (str[i])
 		i++;
 	return (i);
