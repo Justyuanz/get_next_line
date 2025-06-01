@@ -1,11 +1,15 @@
+#include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
-#include "get_next_line.h"
+
 int	main(int argc, char *argv[])
 {
-	int	fd;
-	int	i = 1;
-	char *content = "ab";
+	int		fd;
+	int		i;
+	char	*content;
+
+	i = 1;
+	content = "ab";
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);

@@ -6,23 +6,23 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:24 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/05/31 22:39:28 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/06/01 12:04:48 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "get_next_line.h"
+#include "get_next_line.h"
 
-int gnl_strlen(char *str)
+int	gnl_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
 	return (i);
 }
 
-int gnl_find_nl(char	*buf, char c)
+int	gnl_find_nl(char *buf, char c)
 {
 	int	i;
 
@@ -36,26 +36,26 @@ int gnl_find_nl(char	*buf, char c)
 	return (-1);
 }
 
-char *gnl_error_eof(t_gnl *gnl, char *buf)
+char	*gnl_error_eof(t_gnl *gnl, char *buf)
 {
 	if (*buf)
 	{
 		buf[0] = '\0';
 		return (gnl->line);
 	}
- 	free(gnl->line);
+	free(gnl->line);
 	gnl->line = NULL;
 	return (NULL);
 }
 
-int gnl_updatebuf(char *buf)
+int	gnl_updatebuf(char *buf)
 {
-	int	i;
+	int		i;
 	t_gnl	gnl;
 
 	i = 0;
 	gnl.nl = gnl_find_nl(buf, '\n');
-	if (gnl.nl != -1 && (buf[gnl.nl +1] || buf[gnl.nl]))
+	if (gnl.nl != -1 && (buf[gnl.nl + 1] || buf[gnl.nl]))
 	{
 		while (buf[i])
 		{
@@ -70,8 +70,8 @@ int gnl_updatebuf(char *buf)
 
 char	*gnl_strjoin(char *pre_line, char *buf, int nl)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*str;
 
 	i = gnl_strlen(pre_line);
