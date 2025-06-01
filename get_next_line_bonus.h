@@ -6,7 +6,7 @@
 /*   By: jinzhang <jinzhang@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:18:34 by jinzhang          #+#    #+#             */
-/*   Updated: 2025/06/01 11:50:48 by jinzhang         ###   ########.fr       */
+/*   Updated: 2025/06/01 15:54:00 by jinzhang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 #  define BUFFER_SIZE 42
 # endif
 
-# ifndef MAX_FD
-#  define MAX_FD 1024
+# if BUFFER_SIZE <= -1
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 0
 # endif
 
 typedef struct s_gnl

@@ -8,8 +8,8 @@ int	should_print_or_not(int flag);
 int	main(int argc, char *argv[])
 {
 	char	*content;
-	int		fd[MAX_FD] = {0};
-	int		flag[MAX_FD] = {0};
+	int		fd[1024] = {0};
+	int		flag[1024] = {0};
 	int		b;
 	int		i;
 
