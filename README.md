@@ -35,7 +35,7 @@ git clone https://github.com/Justyuanz/get_next_line.git
 cd get_next_line
 ```
 
-### 🔧 Compile 
+### Compile 
 
 ```bash
 # Mandatory version
