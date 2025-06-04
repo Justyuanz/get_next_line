@@ -84,7 +84,6 @@ Third line of test file
 (null)
 ```
 
----
 
 ### Read from standard input
 ```bash
@@ -97,8 +96,7 @@ This is a test
 <Ctrl+D>
 ```
 
----
-### Bonus: Read from multiple files
+## Bonus: Read from multiple files
 
 ```bash
 ./a.out file1.txt file2.txt
