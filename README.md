@@ -68,6 +68,7 @@ cc -D BUFFER_SIZE=42 get_next_line_bonus.c get_next_line_utils_bonus.c main_bonu
 - Respecting system limits (`ulimit`, file descriptor limits)
 - Understanding how memory segments (stack, heap, BSS) affect program behavior
 - Debugging memory issues and avoiding leaks with `valgrind` and `gdb`
+- Using the C preprocessor to handle conditions
 
 ## Example
 
